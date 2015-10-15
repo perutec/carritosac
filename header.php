@@ -39,7 +39,7 @@
 <a href="/carritosac/pages/vehiculo.php">Vehiculos</a>
 </li>
 <li>
-<a href="#">Calcular Kilometraje</a>
+<a href="/carritosac/pages/kilometraje.php">Calcular Kilometraje</a>
 </li>
 </ul>
 </li>

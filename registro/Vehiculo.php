@@ -21,6 +21,12 @@ else if ($_REQUEST['registro']=='eliminar')
  $vehiculo  = new Vehiculo($_GET['id'],'?','?','?','?','?','?','?','?','?');
  $vehiculo->Eliminar();
 }
+else if ($_REQUEST['registro']=='kilometraje') 
+{
+ $vehiculo  = new Vehiculo($_POST['idvehiculo'],'?','?','?','?','?','?',$_POST['kminicial'],$_POST['kmrecorrido'],
+ 	$_POST['gasolina']);
+ $vehiculo->kilometraje();
+}
 else
 {
 header('Location: /carritosac/pages/vehiculo.php');

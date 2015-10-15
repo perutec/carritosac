@@ -104,6 +104,23 @@ echo "<script>alert('VEHICULO  ACTUALIZADO');
       </script>";
 }
 
+
+public function Kilometraje()
+{
+$db = new Conexion();
+$sql= $db->query("UPDATE  vehiculo  SET kminicial='$this->kminicial',
+	kmrecorrido='$this->kmrecorrido',cant_gasolina=cant_gasolina+'$this->cant_gasolina'
+ WHERE idvehiculo='$this->idvehiculo';");
+echo "<script>alert('VEHICULO  ACTUALIZADO');	
+       window.location='/carritosac/pages/Kilometraje.php';
+      </script>";
+}
+
+
+
+
+
+
 }
 
 

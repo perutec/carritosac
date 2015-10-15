@@ -5,6 +5,7 @@ id="articulo">
 error_reporting(0);//desactivar  warning  php;
 
 require_once('../include/bd/conexion.php');
+
 $db = new Conexion();
 $query = "SELECT * FROM vehiculo";
 $result = $db->query($query);
@@ -20,8 +21,10 @@ $numfilas = $result->num_rows;
 <th>PLACA</th>
 <th>TIPO</th>
 <th>KILOMETRAJE</th>
-<td style="text-align: center"><i class="glyphicon glyphicon-edit text-primary"></i></td>
-<td><i class="glyphicon glyphicon-trash text-danger"></i></td>
+<th>KM RECORRIDO</th>
+<th>CANT. GASOLINA</th>
+<th>RENDIMIENTO</th>
+<td style="text-align: center"><i class="glyphicon glyphicon-scale text-success"></i></td>
 </tr>
 </thead>
 <tbody>
@@ -46,15 +49,15 @@ $txtxa=$txtxa.=$j;
 <td><?php echo $fila->placa                          ?></td>
 <td><?php echo $fila->tipo                           ?></td>
 <td><?php echo round($fila->kminicial,2)             ?></td>
-<td style="text-align: center"class="text-primary">
+<td><?php echo round($fila->kmrecorrido,2)             ?></td>
+<td><?php echo round($fila->cant_gasolina,2)             ?></td>
+<td><?php echo $kilometraje->Rendimiento($fila->kminicial,$fila->kmrecorrido,$fila->cant_gasolina); ?></td>
+<td style="text-align: center"class="text-success">
 <a id="modal-899574" href='<?php echo $txtxa;?>'
 role="button" class="btn" data-toggle="modal">
-<i class="glyphicon glyphicon-edit text-primary"></i>
+<i class="glyphicon glyphicon-scale text-success"></i>
 </a>
 </td>
-
-<td><a href="../registro/Vehiculo.php?id=<?php echo $fila->idvehiculo;?>&registro=eliminar">
-<i class="glyphicon glyphicon-trash text-danger"></i></a></td>
 
 
 <!-- INICIO  MODAL -->
@@ -76,27 +79,17 @@ ACTUALIZAR  DATOS DEL VEHICULO
 <div class="modal-body">
 
 <input type="hidden" name="idvehiculo" value="<?php echo $fila->idvehiculo; ?>">
-<label for="">MARCA</label>
-<input type="text" name="marca" id="" class="form-control"   value="<?php echo $fila->marca; ?>"
- onchange="conMayusculas(this);">
-<label for="">AÑO DE FABRICACIÓN</label>
-<input type="number" name="aniofab" id="" class="form-control"   value="<?php echo $fila->anio_fabricacion; ?>">
-<label for="">NÚMERO DE PUERTAS</label>
-<input type="number" name="puertas" id="" class="form-control"   value="<?php echo $fila->num_puertas; ?>">
-<label for="">COLOR</label>
-<input type="text" name="color" id="" class="form-control"   value="<?php echo $fila->color; ?>" 
-onchange="conMayusculas(this);">
-<label for="">PLACA</label>
-<input type="text" name="placa" id="" class="form-control"   value="<?php echo $fila->placa; ?>" 
-onchange="conMayusculas(this);">
-<label for="">TIPO</label>
-<input type="text" name="tipo" id="" class="form-control"   value="<?php echo $fila->tipo; ?>"
-onchange="conMayusculas(this);">
+
 <label for="">KILOMETRAJE</label>
 <input type="number" name="kminicial" id="" class="form-control"  
- value="<?php echo round($fila->kminicial,2); ?>">
+value="<?php echo round($fila->kminicial,2); ?>">
+<label for="">KM RECORRIDO</label>
+<input type="number" name="kmrecorrido" id="" class="form-control"  
+value="<?php echo round($fila->kmrecorrido,2); ?>">
+<label for="">GASOLINA</label>
+<input type="number" name="gasolina" id="" class="form-control" >
 
-<input type="hidden" name="registro" value="actualizar" >
+<input type="hidden" name="registro" value="kilometraje" >
 </div>
 
 <div class="modal-footer">
